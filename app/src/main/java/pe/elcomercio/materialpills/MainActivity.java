@@ -26,9 +26,6 @@ public class MainActivity extends AppCompatActivity {
     MaterialPillsBox materialPillsBox;
     LayoutInflater mInflater;
     private List<String> pillNamesList = new ArrayList<>();
-//    private String[] mVals = new String[]
-//            {"Do", "one thing", "at a time", "and do well.", "Never", "forget",
-//                    "to say", "thanks.", "Keep on", "going ", "never give up."};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
