@@ -19,6 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NormalPillsActivity"
+            android:label="@string/title_activity_normal_pills"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DeletePillsActivity"
+            android:label="@string/title_activity_delete_pills"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
