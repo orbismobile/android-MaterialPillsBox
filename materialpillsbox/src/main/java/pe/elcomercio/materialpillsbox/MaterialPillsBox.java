@@ -4,13 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Carlos Leonardo Camilo Vargas Huamán on 5/18/17.
+ *
  */
 
 public class MaterialPillsBox extends ViewGroup {
