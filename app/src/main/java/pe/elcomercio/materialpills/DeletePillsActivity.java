@@ -30,7 +30,7 @@ public class DeletePillsActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                materialPillsBox.addPillAtPosition(new PillEntity(3, "New Tag"), 1);
+                materialPillsBox.addPillAtPosition(0, new PillEntity(3, "New Tag"));
             }
         });
     }

@@ -7,7 +7,7 @@
         <attr name="circleSize" format="dimension"/>
         <attr name="backgroundCircle" format="color|reference"/>
         <attr name="progressColor" format="color|reference"/>
-        <attr name="progressOutline" format="boolean"/>
+        <attr name="showCloseIcon" format="boolean"/>
         <attr name="animation">
             <enum name="BUTT" value="0"/>
             <enum name="ROUND" value="1"/>
