@@ -19,15 +19,12 @@ import java.util.List;
 
 /**
  * Created by Carlos Leonardo Camilo Vargas Huamán on 5/18/17.
+ *
  */
 
 public class MaterialPillsBox extends ViewGroup implements View.OnClickListener {
 
-//    public int uniqueTagId;
-//    public int tagPosition;
-
     private List<PillEntity> pillEntityList = new ArrayList<>();
-
 
     private int maxPills;
 
@@ -84,7 +81,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         a.recycle();
     }
 
-    public void refreshPosition(List<PillEntity> pillEntityList) {
+    public void notifyDataSet() {
         for (int i = 0; i < pillEntityList.size(); i++) {
             getChildAt(i).setTag(i);
         }
@@ -97,8 +94,23 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                     .inflate(R.layout.pills_box_layout, this, false);
             TextView tv1 = (TextView) linear.findViewById(R.id.lblPill);
             tv1.setText(pillEntity.getName());
-            linear.setTag(pillEntityList.size() - 1);
             addView(linear);
+            notifyDataSet();
+            linear.setOnClickListener(this);
+        } else {
+            Log.e("MATERIALPILLSBOX", "got max number of pills");
+        }
+    }
+
+    public void addPillAtPosition(PillEntity pillEntity, int tagPosition){
+        if (pillEntityList.size() < maxPills) {
+            pillEntityList.add(tagPosition, pillEntity);
+            final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
+                    .inflate(R.layout.pills_box_layout, this, false);
+            TextView tv1 = (TextView) linear.findViewById(R.id.lblPill);
+            tv1.setText(pillEntity.getName());
+            addView(linear, tagPosition);
+            notifyDataSet();
             linear.setOnClickListener(this);
         } else {
             Log.e("MATERIALPILLSBOX", "got max number of pills");
