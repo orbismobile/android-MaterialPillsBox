@@ -2,6 +2,7 @@ package pe.elcomercio.materialpillsbox;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,14 +29,22 @@ public class MaterialPillsBox extends ViewGroup {
     }
 
 
+    /**
+     * This method is called each time when you add a new ChildView
+     * @param widthMeasureSpec a value something like 1073742560
+     * @param heightMeasureSpec a value something like 1073742560
+     * For example if you set wrap_content to layout_height of this ViewGroup heightMeasureSpec is 0
+     */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-
+        // Values of the Width and Height but in pixels, something like 640x480, 720x200
         int sizeWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int sizeHeight = MeasureSpec.getSize(heightMeasureSpec);
+
+        // Long number used for the setMeasuredDimension(,) for the viewGroup
+        int modeWidth = MeasureSpec.getMode(widthMeasureSpec);
         int modeHeight = MeasureSpec.getMode(heightMeasureSpec);
 
         int width = 0;
@@ -72,12 +81,16 @@ public class MaterialPillsBox extends ViewGroup {
             }
         }
 
-
+        /**
+         * This method set a measured dimension for this ViewGroup
+         * If you set setMeasuredDimension(100,100), you will get a square
+         * with 2 pills inside it with vertical orientation.
+         * MeasureSpec.EXACTLY return the MeasureSpec.getMode() but of all screen's width
+         */
         setMeasuredDimension(
                 modeWidth == MeasureSpec.EXACTLY ? sizeWidth : width + getPaddingLeft() + getPaddingRight(),
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom()
         );
-
     }
 
 
