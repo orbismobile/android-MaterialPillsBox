@@ -24,6 +24,7 @@
         <pe.elcomercio.materialpillsbox.MaterialPillsBox
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:max="15"/>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

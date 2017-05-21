@@ -1,39 +1,125 @@
 package pe.elcomercio.materialpillsbox;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Carlos Leonardo Camilo Vargas Huamán on 5/18/17.
- *
  */
 
-public class MaterialPillsBox extends ViewGroup {
+public class MaterialPillsBox extends ViewGroup implements View.OnClickListener {
+
+//    public int uniqueTagId;
+//    public int tagPosition;
+
+    private List<PillEntity> pillEntityList = new ArrayList<>();
+
+
+    private int maxPills;
 
     public MaterialPillsBox(Context context) {
         super(context);
+
     }
 
     public MaterialPillsBox(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init(attrs, 0, 0);
     }
 
     public MaterialPillsBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(attrs, defStyleAttr, 0);
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public MaterialPillsBox(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(attrs, defStyleAttr, defStyleRes);
+    }
+
+    public void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        final TypedArray a = getContext().obtainStyledAttributes(
+                attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
+
+        maxPills = a.getInt(
+                R.styleable.MaterialPillsBox_max, 10);
+//        setProgress(a.getFloat(
+//                R.styleable.ImageProfilePercentage_progress, mProgress));
+//        if (!a.hasValue(R.styleable.ImageProfilePercentage_backgroundSize)) {
+//            if (a.hasValue(R.styleable.ImageProfilePercentage_circleSize)) {
+//                setProgressRingSize(a.getDimension(
+//                        R.styleable.ImageProfilePercentage_circleSize, mProgressRingSize));
+//                setBackgroundRingSize(mProgressRingSize);
+//            }
+//        } else {
+//            setBackgroundRingSize(a.getDimension(
+//                    R.styleable.ImageProfilePercentage_backgroundSize, mBackgroundRingSize));
+//            setProgressRingSize(a.getDimension(
+//                    R.styleable.ImageProfilePercentage_circleSize, mProgressRingSize));
+//        }
+//        setProgressRingOutline(
+//                a.getBoolean(R.styleable.ImageProfilePercentage_progressOutline, false));
+//        setBackgroundRingColor(a.getColor(
+//                R.styleable.ImageProfilePercentage_backgroundCircle, mBackgroundRingColor));
+//        setProgressRingColor(a.getColor(
+//                R.styleable.ImageProfilePercentage_progressColor, mProgressRingColor));
+//        setProgressRingCap(a.getInt(
+//                R.styleable.ImageProfilePercentage_animation, Paint.Cap.BUTT.ordinal()));
+
+        a.recycle();
+    }
+
+    public void refreshPosition(List<PillEntity> pillEntityList) {
+        for (int i = 0; i < pillEntityList.size(); i++) {
+            getChildAt(i).setTag(i);
+        }
+    }
+
+    public void addPill(PillEntity pillEntity) {
+        if (pillEntityList.size() < maxPills) {
+            pillEntityList.add(pillEntity);
+            final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
+                    .inflate(R.layout.pills_box_layout, this, false);
+            TextView tv1 = (TextView) linear.findViewById(R.id.lblPill);
+            tv1.setText(pillEntity.getName());
+            linear.setTag(pillEntityList.size() - 1);
+            addView(linear);
+            linear.setOnClickListener(this);
+        } else {
+            Log.e("MATERIALPILLSBOX", "got max number of pills");
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int viewPosition = (int) v.getTag();
+        Toast.makeText(getContext(), "position: " + v.getTag() +
+                        " tagName: " + pillEntityList.get(viewPosition).getName(),
+                Toast.LENGTH_SHORT).show();
     }
 
 
     /**
      * This method is called each time when you add a new ChildView
-     * @param widthMeasureSpec a value something like 1073742560
+     *
+     * @param widthMeasureSpec  a value something like 1073742560
      * @param heightMeasureSpec a value something like 1073742560
-     * For example if you set wrap_content to layout_height of this ViewGroup heightMeasureSpec is 0
+     *                          For example if you set wrap_content to layout_height of this ViewGroup heightMeasureSpec is 0
      */
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -174,4 +260,5 @@ public class MaterialPillsBox extends ViewGroup {
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
     }
+
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pe.elcomercio.materialpillsbox.MaterialPillsBox;
+import pe.elcomercio.materialpillsbox.PillEntity;
 
 public class DeletePillsActivity extends AppCompatActivity {
 
@@ -32,44 +33,49 @@ public class DeletePillsActivity extends AppCompatActivity {
         materialPillsBox = (MaterialPillsBox) findViewById(R.id.mtbArea);
         mInflater = LayoutInflater.from(this);
 
-        for (int i = 0; i < 10; i++) {
-            pillNamesList.add("Init " + i);
-        }
+//        for (int i = 0; i < 10; i++) {
+//            pillNamesList.add("Init " + i);
+//        }
 
-        for (int i = 0; i < pillNamesList.size(); i++) {
-            initPillsBox(i, false);
-        }
+
+        materialPillsBox.addPill(new PillEntity(0, "Carlos"));
+        materialPillsBox.addPill(new PillEntity(1, "Ronaldo"));
+        materialPillsBox.addPill(new PillEntity(2, "Jan"));
+
+//        for (int i = 0; i < pillNamesList.size(); i++) {
+//            initPillsBox(i, false);
+//        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pillNamesList.add("New " + pillNamesList.size());
-                initPillsBox(pillNamesList.size()-1, true);
-                Log.e("ADDED", "TAG " + pillNamesList.get(pillNamesList.size()-1));
+                materialPillsBox.addPill(new PillEntity(3, "Nuevo"));
+//                pillNamesList.add("New " + pillNamesList.size());
+//                initPillsBox(pillNamesList.size()-1, true);
+//                Log.e("ADDED", "TAG " + pillNamesList.get(pillNamesList.size()-1));
             }
         });
     }
 
-
     public void initPillsBox(int i, boolean addAtFirst) {
-        final LinearLayout linear = (LinearLayout) mInflater.inflate(R.layout.pills_box_layout, materialPillsBox, false);
-        TextView tv1 = (TextView) linear.findViewById(R.id.lblPill);
-        tv1.setText(pillNamesList.get(i));
-        linear.setTag(i);
-        if(addAtFirst){
-            materialPillsBox.addView(linear, 0);
-        }else{
-            materialPillsBox.addView(linear);
-        }
-
-        linear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("REMOVED", "TAG " + linear.getTag());
-                v.setBackgroundColor(Color.CYAN);
-//                materialPillsBox.removeView(v);
-            }
-        });
+//        final LinearLayout linear = (LinearLayout) mInflater.inflate(R.layout.pills_box_layout, materialPillsBox, false);
+//        TextView tv1 = (TextView) linear.findViewById(R.id.lblPill);
+//        tv1.setText(pillNamesList.get(i));
+//        linear.setTag(i);
+//        if(addAtFirst){
+//            materialPillsBox.addView(linear, 0);
+//        }else{
+//            materialPillsBox.addView(linear);
+//        }
+//
+//        linear.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.e("REMOVED", "TAG " + linear.getTag());
+//                v.setBackgroundColor(Color.CYAN);
+////                materialPillsBox.removeView(v);
+//            }
+//        });
     }
 }
