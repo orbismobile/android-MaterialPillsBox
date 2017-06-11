@@ -18,7 +18,6 @@ import java.util.List;
 
 /**
  * Created by Carlos Leonardo Camilo Vargas Huamán on 5/18/17.
- *
  */
 
 public class MaterialPillsBox extends ViewGroup implements View.OnClickListener {
@@ -26,13 +25,16 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private final List<PillEntity> pillEntityList = new ArrayList<>();
 
     private int maxPills;
+    private int backgroundPill;
+    private int backgroundPillSelected;
     private boolean hideCloseIcon;
 
     private OnPillClickListener onPillClickListener;
 
-    public void setOnPillClickListener(OnPillClickListener onPillClickListener){
+    public void setOnPillClickListener(OnPillClickListener onPillClickListener) {
         this.onPillClickListener = onPillClickListener;
     }
+
     public MaterialPillsBox(Context context) {
         super(context);
 
@@ -60,6 +62,11 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
         maxPills = a.getInt(
                 R.styleable.MaterialPillsBox_max, 10);
+
+        backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_backgroundPill, R.drawable.shape_button_pill);
+        backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_backgroundPillSelected, R.drawable.shape_button_selected_pill);
+//
+//        setBackgroundResource(R.drawable.shape_button_selected_pill);
 //        setProgress(a.getFloat(
 //                R.styleable.ImageProfilePercentage_progress, mProgress));
 //        if (!a.hasValue(R.styleable.ImageProfilePercentage_backgroundSize)) {
@@ -74,7 +81,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 //            setProgressRingSize(a.getDimension(
 //                    R.styleable.ImageProfilePercentage_circleSize, mProgressRingSize));
 //        }
-        hideCloseIcon=
+        hideCloseIcon =
                 a.getBoolean(R.styleable.MaterialPillsBox_showCloseIcon, false);
 //        setBackgroundRingColor(a.getColor(
 //                R.styleable.ImageProfilePercentage_backgroundCircle, mBackgroundRingColor));
@@ -88,7 +95,9 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
     public void notifyDataSet() {
         for (int i = 0; i < pillEntityList.size(); i++) {
-            getChildAt(i).setTag(i);
+            if(i < maxPills){
+                getChildAt(i).setTag(i);
+            }
         }
     }
 
@@ -97,12 +106,13 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             pillEntityList.add(pillEntity);
             final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                     .inflate(R.layout.pills_box_layout, this, false);
+            linear.setBackgroundResource(backgroundPill);
             TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
             tv1.setText(pillEntity.getName());
             ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
-            if(hideCloseIcon){
+            if (hideCloseIcon) {
                 imgClose.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 imgClose.setVisibility(View.GONE);
             }
             addView(linear);
@@ -113,17 +123,44 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
-    public void addPillAtPosition(int tagPosition, PillEntity pillEntity){
+    public void addPillsList(List<PillEntity> pillEntities) {
+        if ((pillEntityList.size()) < maxPills) {
+            pillEntityList.addAll(pillEntities);
+            for (int i = 0; i < pillEntityList.size(); i++) {
+                if (i < maxPills) {
+                    final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
+                            .inflate(R.layout.pills_box_layout, this, false);
+                    linear.setBackgroundResource(backgroundPill);
+                    TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
+                    tv1.setText(pillEntityList.get(i).getName());
+                    ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
+                    if (hideCloseIcon) {
+                        imgClose.setVisibility(View.VISIBLE);
+                    } else {
+                        imgClose.setVisibility(View.GONE);
+                    }
+                    addView(linear);
+                    linear.setOnClickListener(this);
+                }
+            }
+            notifyDataSet();
+        } else {
+            Log.e("MATERIALPILLSBOX", "got max number of pills");
+        }
+    }
+
+    public void addPillAtPosition(int tagPosition, PillEntity pillEntity) {
         if (pillEntityList.size() < maxPills) {
             pillEntityList.add(tagPosition, pillEntity);
             final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                     .inflate(R.layout.pills_box_layout, this, false);
+            linear.setBackgroundResource(backgroundPill);
             TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
             tv1.setText(pillEntity.getName());
             ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
-            if(hideCloseIcon){
+            if (hideCloseIcon) {
                 imgClose.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 imgClose.setVisibility(View.GONE);
             }
             addView(linear, tagPosition);
@@ -134,32 +171,36 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
-    public void removePillAtPosition(int tagPosition){
-        if(!pillEntityList.isEmpty()){
+    public void removePillAtPosition(int tagPosition) {
+        if (!pillEntityList.isEmpty()) {
             pillEntityList.remove(tagPosition);
             removeViewAt(tagPosition);
             notifyDataSet();
-        }else{
+        } else {
             Log.e("Error pillEntityList", "is empty");
         }
     }
 
+    public void removeAllPills(){
+        pillEntityList.clear();
+        removeAllViews();
+    }
+
     @Override
     public void onClick(View v) {
-        int position = (int)v.getTag();
-        if(pillEntityList.get((int)v.getTag()).isPressed()){
+        int position = (int) v.getTag();
+        if (pillEntityList.get((int) v.getTag()).isPressed()) {
             pillEntityList.get(position).setPressed(false);
-            v.setBackgroundResource(R.drawable.shape_button_pill);
-        }else{
+            v.setBackgroundResource(backgroundPill);
+        } else {
             pillEntityList.get(position).setPressed(true);
-            v.setBackgroundResource(R.drawable.shape_button_selected_pill);
+            v.setBackgroundResource(backgroundPillSelected);
         }
 
-        if(onPillClickListener!= null){
+        if (onPillClickListener != null) {
             onPillClickListener.onPillClick(position);
         }
     }
-
 
     /**
      * This method is called each time when you add a new ChildView
@@ -214,8 +255,9 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             }
         }
 
-        /**
-         * This method set a measured dimension for this ViewGroup
+        /*
+         * This method set a measured dimension for this ViewGroup.
+         * <p>
          * If you set setMeasuredDimension(100,100), you will get a square
          * with 2 pills inside it with vertical orientation.
          * MeasureSpec.EXACTLY return the MeasureSpec.getMode() but of all screen's width
@@ -225,7 +267,6 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 modeHeight == MeasureSpec.EXACTLY ? sizeHeight : height + getPaddingTop() + getPaddingBottom()
         );
     }
-
 
     private final List<List<View>> mAllViews = new ArrayList<List<View>>();
     private final List<Integer> mLineHeight = new ArrayList<Integer>();

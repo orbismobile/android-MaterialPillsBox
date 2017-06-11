@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_normal_pills">NormalPillsActivity</string>
     <string name="title_activity_delete_pills">DeletePillsActivity</string>
+    <string name="add_pill">Add Pill</string>
+    <string name="delete_all">Delete All</string>
 </resources>

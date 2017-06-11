@@ -5,6 +5,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import pe.elcomercio.materialpillsbox.MaterialPillsBox;
 import pe.elcomercio.materialpillsbox.PillEntity;
@@ -12,6 +16,8 @@ import pe.elcomercio.materialpillsbox.PillEntity;
 public class DeletePillsActivity extends AppCompatActivity {
 
     MaterialPillsBox materialPillsBox;
+    private Button btnAddPill;
+    private Button btnDeletePills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,11 +26,30 @@ public class DeletePillsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         materialPillsBox = (MaterialPillsBox) findViewById(R.id.mtbArea);
+        btnAddPill = (Button) findViewById(R.id.btnAddPill);
+        btnDeletePills = (Button) findViewById(R.id.btnDeletePills);
 
-        materialPillsBox.addPill(new PillEntity(0, "CarlitosDroid"));
-        materialPillsBox.addPill(new PillEntity(0, "CarlosMB"));
-        materialPillsBox.addPill(new PillEntity(1, "OrbisMobile"));
-        materialPillsBox.addPill(new PillEntity(2, "Jan"));
+        List<PillEntity> pillEntityList = new ArrayList<>();
+        pillEntityList.add(new PillEntity(0, "CarlitosDroid"));
+        pillEntityList.add(new PillEntity(0, "CarlosMB"));
+        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
+        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
+        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
+
+        materialPillsBox.addPillsList(pillEntityList);
+
+        btnAddPill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialPillsBox.addPill(new PillEntity(2, "OrbisMobile"));
+            }
+        });
+        btnDeletePills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialPillsBox.removeAllPills();
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

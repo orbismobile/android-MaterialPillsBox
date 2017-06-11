@@ -3,6 +3,8 @@
     <declare-styleable name="MaterialPillsBox">
         <attr name="max" format="integer"/>
         <attr name="progress" format="float"/>
+        <attr name="backgroundPill" format="reference"/>
+        <attr name="backgroundPillSelected" format="reference"/>
         <attr name="backgroundSize" format="dimension"/>
         <attr name="circleSize" format="dimension"/>
         <attr name="backgroundCircle" format="color|reference"/>
