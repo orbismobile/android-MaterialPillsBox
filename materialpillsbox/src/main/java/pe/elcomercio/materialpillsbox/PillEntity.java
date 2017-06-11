@@ -14,6 +14,10 @@ public class PillEntity {
     public PillEntity() {
     }
 
+    public PillEntity(String name){
+        this.name = name;
+    }
+
     public PillEntity(int id, String name) {
         this.id = id;
         this.name = name;
