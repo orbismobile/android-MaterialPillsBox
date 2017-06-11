@@ -9,6 +9,10 @@ public class PillEntity {
 
     private int id;
     private String name;
+    private boolean pressed = false;
+
+    public PillEntity() {
+    }
 
     public PillEntity(int id, String name) {
         this.id = id;
@@ -29,5 +33,13 @@ public class PillEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isPressed() {
+        return pressed;
+    }
+
+    public void setPressed(boolean pressed) {
+        this.pressed = pressed;
     }
 }

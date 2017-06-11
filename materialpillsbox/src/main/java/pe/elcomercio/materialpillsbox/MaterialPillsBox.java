@@ -3,19 +3,15 @@ package pe.elcomercio.materialpillsbox;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Build;
-import android.support.v7.widget.SearchView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +23,16 @@ import java.util.List;
 
 public class MaterialPillsBox extends ViewGroup implements View.OnClickListener {
 
-    private List<PillEntity> pillEntityList = new ArrayList<>();
+    private final List<PillEntity> pillEntityList = new ArrayList<>();
 
     private int maxPills;
     private boolean hideCloseIcon;
 
+    private OnPillClickListener onPillClickListener;
+
+    public void setOnPillClickListener(OnPillClickListener onPillClickListener){
+        this.onPillClickListener = onPillClickListener;
+    }
     public MaterialPillsBox(Context context) {
         super(context);
 
@@ -53,7 +54,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         init(attrs, defStyleAttr, defStyleRes);
     }
 
-    public void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    private void init(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         final TypedArray a = getContext().obtainStyledAttributes(
                 attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
 
@@ -145,10 +146,18 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        int viewPosition = (int) v.getTag();
-        Toast.makeText(getContext(), "position: " + v.getTag() +
-                        " tagName: " + pillEntityList.get(viewPosition).getName(),
-                Toast.LENGTH_SHORT).show();
+        int position = (int)v.getTag();
+        if(pillEntityList.get((int)v.getTag()).isPressed()){
+            pillEntityList.get(position).setPressed(false);
+            v.setBackgroundResource(R.drawable.shape_button_pill);
+        }else{
+            pillEntityList.get(position).setPressed(true);
+            v.setBackgroundResource(R.drawable.shape_button_selected_pill);
+        }
+
+        if(onPillClickListener!= null){
+            onPillClickListener.onPillClick(position);
+        }
     }
 
 
@@ -218,8 +227,8 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     }
 
 
-    private List<List<View>> mAllViews = new ArrayList<List<View>>();
-    private List<Integer> mLineHeight = new ArrayList<Integer>();
+    private final List<List<View>> mAllViews = new ArrayList<List<View>>();
+    private final List<Integer> mLineHeight = new ArrayList<Integer>();
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -230,7 +239,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
         int lineWidth = 0;
         int lineHeight = 0;
-        List<View> lineViews = new ArrayList<View>();
+        List<View> lineViews = new ArrayList<>();
 
         int cCount = getChildCount();
 
@@ -248,7 +257,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
                 lineWidth = 0;
                 lineHeight = childHeight + lp.topMargin + lp.bottomMargin;
-                lineViews = new ArrayList<View>();
+                lineViews = new ArrayList<>();
             }
 
             lineWidth += childWidth + lp.leftMargin + lp.rightMargin;
