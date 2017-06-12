@@ -95,7 +95,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 
     public void notifyDataSet() {
         for (int i = 0; i < pillEntityList.size(); i++) {
-            if(i < maxPills){
+            if (i < maxPills) {
                 getChildAt(i).setTag(i);
             }
         }
@@ -181,7 +181,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
-    public void removeAllPills(){
+    public void removeAllPills() {
         pillEntityList.clear();
         removeAllViews();
     }
@@ -203,12 +203,17 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     }
 
     /**
+     * (2)
+     * This method needs override the super constructor strongly
+     * This method is called after constructor is executed
+     * This method is executed before onLayout method
      * This method is called each time when you add a new ChildView
      *
-     * @param widthMeasureSpec  a value something like 1073742560
-     * @param heightMeasureSpec a value something like 1073742560
+     * @param widthMeasureSpec  a value of the ViewGroup something like 1073742560
+     * @param heightMeasureSpec a value of the ViewGroup something like 1073742560
      *                          For example if you set wrap_content to layout_height of this ViewGroup heightMeasureSpec is 0
      */
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -271,11 +276,20 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private final List<List<View>> mAllViews = new ArrayList<List<View>>();
     private final List<Integer> mLineHeight = new ArrayList<Integer>();
 
+
+    /**
+     * (3)
+     * This method is called after onMeasure method
+     * This method is called each time when you add a new ChildView
+     * When extends from ViewGroup this method is required
+     *
+     */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         mAllViews.clear();
         mLineHeight.clear();
 
+        //getWidth() returns twice the dp parent's value in pixels, if you set 200dp to layout_width then we'll get 400
         int width = getWidth();
 
         int lineWidth = 0;
@@ -291,9 +305,11 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
 
-
+            //this conditional is executed when a childView reach the end of a row
             if (lineWidth + childWidth + lp.leftMargin + lp.rightMargin > width - getPaddingLeft() - getPaddingRight()) {
+                //we add a lineHeight to the list only when we reach the width of parent
                 mLineHeight.add(lineHeight);
+                //we add the list of child views to the list(mAllViws) only when we reach the width of parent
                 mAllViews.add(lineViews);
 
                 lineWidth = 0;
