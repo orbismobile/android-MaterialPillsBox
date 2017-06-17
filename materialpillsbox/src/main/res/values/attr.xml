@@ -9,6 +9,10 @@
         <attr name="pillTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
         <attr name="closeIcon" format="reference"/>
+        <attr name="pillMarginTop" format="dimension"/>
+        <attr name="pillMarginBottom" format="dimension"/>
+        <attr name="pillMarginLeft" format="dimension"/>
+        <attr name="pillMarginRight" format="dimension"/>
         <attr name="animation">
             <enum name="BUTT" value="0"/>
             <enum name="ROUND" value="1"/>

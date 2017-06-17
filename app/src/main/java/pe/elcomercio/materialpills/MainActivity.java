@@ -1,19 +1,22 @@
 package pe.elcomercio.materialpills;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import pe.elcomercio.materialpillsbox.MaterialPillsBox;
+import pe.elcomercio.materialpillsbox.PillEntity;
 
-    private Button btnNormal;
-    private Button btnDelete;
+public class MainActivity extends AppCompatActivity {
+
+    MaterialPillsBox materialPillsBox;
+    private Button btnAddPill;
+    private Button btnDeletePills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,43 +24,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        btnNormal = (Button) findViewById(R.id.btnNormal);
-        btnDelete = (Button) findViewById(R.id.btnDelete);
-        btnNormal.setOnClickListener(this);
-        btnDelete.setOnClickListener(this);
-    }
+        materialPillsBox = (MaterialPillsBox) findViewById(R.id.mtbArea);
+        btnAddPill = (Button) findViewById(R.id.btnAddPill);
+        btnDeletePills = (Button) findViewById(R.id.btnDeletePill);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        List<PillEntity> pillEntityList = new ArrayList<>();
+        pillEntityList.add(new PillEntity(0, "CarlitosDroid"));
+        pillEntityList.add(new PillEntity(0, "Jan"));
+        pillEntityList.add(new PillEntity(2, "Ricardo"));
+        pillEntityList.add(new PillEntity(2, "Andres"));
+        pillEntityList.add(new PillEntity(3, "Carlo"));
+        pillEntityList.add(new PillEntity(2, "Gerardo"));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        materialPillsBox.addPillsList(pillEntityList);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnNormal:
-                startActivity(new Intent(MainActivity.this, NormalPillsActivity.class));
-                break;
-            case R.id.btnDelete:
-                startActivity(new Intent(MainActivity.this, DeletePillsActivity.class));
-                break;
-        }
+        btnAddPill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialPillsBox.addPill(new PillEntity(2, "OrbisMobile"));
+            }
+        });
+        btnDeletePills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialPillsBox.removeAllPills();
+            }
+        });
     }
 }
