@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private int backgroundPill;
     private int backgroundPillSelected;
     private boolean hideCloseIcon;
+    private int pillTextColor;
+    private int closeIcon;
 
     private OnPillClickListener onPillClickListener;
 
@@ -61,10 +64,12 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
 
         maxPills = a.getInt(
-                R.styleable.MaterialPillsBox_max, 10);
+                R.styleable.MaterialPillsBox_maxPills, 10);
 
-        backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_backgroundPill, R.drawable.shape_button_pill);
-        backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_backgroundPillSelected, R.drawable.shape_button_selected_pill);
+        backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_pillBackground, R.drawable.shape_button_pill);
+        backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_pillSelectedBackground, R.drawable.shape_button_selected_pill);
+
+        closeIcon = a.getResourceId(R.styleable.MaterialPillsBox_closeIcon, R.drawable.ic_close_white_24dp);
 //
 //        setBackgroundResource(R.drawable.shape_button_selected_pill);
 //        setProgress(a.getFloat(
@@ -81,10 +86,12 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
 //            setProgressRingSize(a.getDimension(
 //                    R.styleable.ImageProfilePercentage_circleSize, mProgressRingSize));
 //        }
+
+
         hideCloseIcon =
                 a.getBoolean(R.styleable.MaterialPillsBox_showCloseIcon, false);
-//        setBackgroundRingColor(a.getColor(
-//                R.styleable.ImageProfilePercentage_backgroundCircle, mBackgroundRingColor));
+        pillTextColor = a.getColor(
+                R.styleable.MaterialPillsBox_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
 //        setProgressRingColor(a.getColor(
 //                R.styleable.ImageProfilePercentage_progressColor, mProgressRingColor));
 //        setProgressRingCap(a.getInt(
@@ -107,9 +114,11 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                     .inflate(R.layout.pills_box_layout, this, false);
             linear.setBackgroundResource(backgroundPill);
-            TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
-            tv1.setText(pillEntity.getName());
+            TextView lblMessage = (TextView) linear.findViewById(R.id.lblMessage);
+            lblMessage.setText(pillEntity.getName());
+            lblMessage.setTextColor(pillTextColor);
             ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
+            imgClose.setBackgroundResource(closeIcon);
             if (hideCloseIcon) {
                 imgClose.setVisibility(View.VISIBLE);
             } else {
@@ -131,9 +140,11 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                     final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                             .inflate(R.layout.pills_box_layout, this, false);
                     linear.setBackgroundResource(backgroundPill);
-                    TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
-                    tv1.setText(pillEntityList.get(i).getName());
+                    TextView lblMessage = (TextView) linear.findViewById(R.id.lblMessage);
+                    lblMessage.setText(pillEntityList.get(i).getName());
+                    lblMessage.setTextColor(pillTextColor);
                     ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
+                    imgClose.setBackgroundResource(closeIcon);
                     if (hideCloseIcon) {
                         imgClose.setVisibility(View.VISIBLE);
                     } else {
@@ -155,9 +166,11 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                     .inflate(R.layout.pills_box_layout, this, false);
             linear.setBackgroundResource(backgroundPill);
-            TextView tv1 = (TextView) linear.findViewById(R.id.lblMessage);
-            tv1.setText(pillEntity.getName());
+            TextView lblMessage = (TextView) linear.findViewById(R.id.lblMessage);
+            lblMessage.setText(pillEntity.getName());
+            lblMessage.setTextColor(pillTextColor);
             ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
+            imgClose.setBackgroundResource(closeIcon);
             if (hideCloseIcon) {
                 imgClose.setVisibility(View.VISIBLE);
             } else {

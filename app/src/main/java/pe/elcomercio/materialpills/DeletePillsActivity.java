@@ -1,7 +1,6 @@
 package pe.elcomercio.materialpills;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -27,14 +26,15 @@ public class DeletePillsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         materialPillsBox = (MaterialPillsBox) findViewById(R.id.mtbArea);
         btnAddPill = (Button) findViewById(R.id.btnAddPill);
-        btnDeletePills = (Button) findViewById(R.id.btnDeletePills);
+        btnDeletePills = (Button) findViewById(R.id.btnDeletePill);
 
         List<PillEntity> pillEntityList = new ArrayList<>();
         pillEntityList.add(new PillEntity(0, "CarlitosDroid"));
-        pillEntityList.add(new PillEntity(0, "CarlosMB"));
-        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
-        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
-        pillEntityList.add(new PillEntity(2, "OrbisMobile"));
+        pillEntityList.add(new PillEntity(0, "Jan"));
+        pillEntityList.add(new PillEntity(2, "Ricardo"));
+        pillEntityList.add(new PillEntity(2, "Andres"));
+        pillEntityList.add(new PillEntity(3, "Carlo"));
+        pillEntityList.add(new PillEntity(2, "Gerardo"));
 
         materialPillsBox.addPillsList(pillEntityList);
 
@@ -48,14 +48,6 @@ public class DeletePillsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 materialPillsBox.removeAllPills();
-            }
-        });
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                materialPillsBox.addPillAtPosition(0, new PillEntity(3, "New Tag"));
             }
         });
     }

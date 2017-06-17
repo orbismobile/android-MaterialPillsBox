@@ -1,0 +1,19 @@
+tipo(ambito): asunto
+
+# descripción (usar guión " - " para describir features)
+
+# pie(identificador del ticket)
+
+
+#--------------------------------------------------------------------------------------
+# Tipos
+# -feat : nueva características                                   :sparkles:
+# -fix : corrección de error                                      :bug:
+# -docs : documentación                                           :memo:
+# -refactor : mejoras de código sin alterar funcionalidades       :zap:
+# -style : formato de código, tabspace, etc                       :art:
+# -test : añadir funciones de prueba en la suit de pruebas        :white_check_mark:
+# -chore : cambios en el uso de herramientas, librerías, etc      :arrow_up:        
+# -work: todavía se sigue trabajando                              :construction:
+# -remove: cuando se remueve archivos                             :fire:
+

@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MaterialPillsBox">
-        <attr name="max" format="integer"/>
-        <attr name="progress" format="float"/>
-        <attr name="backgroundPill" format="reference"/>
-        <attr name="backgroundPillSelected" format="reference"/>
+        <attr name="maxPills" format="integer"/>
+        <attr name="pillBackground" format="reference"/>
+        <attr name="pillSelectedBackground" format="reference"/>
         <attr name="backgroundSize" format="dimension"/>
         <attr name="circleSize" format="dimension"/>
-        <attr name="backgroundCircle" format="color|reference"/>
-        <attr name="progressColor" format="color|reference"/>
+        <attr name="pillTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
+        <attr name="closeIcon" format="reference"/>
         <attr name="animation">
             <enum name="BUTT" value="0"/>
             <enum name="ROUND" value="1"/>
