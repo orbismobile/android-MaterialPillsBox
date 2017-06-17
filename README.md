@@ -1,7 +1,7 @@
 # MaterialPillsBox Widget
 
 <p align="center">
-    <img src="Screenshots/ic_pill_launcher-web.png" alt="icon" width="50%"/>
+    <img src="Screenshots/ic_pillsbox_launcher-web.png" alt="icon" width="30%"/>
 </p>
 
 MaterialPillsBox is a widget that allows you to implement a list of objects
