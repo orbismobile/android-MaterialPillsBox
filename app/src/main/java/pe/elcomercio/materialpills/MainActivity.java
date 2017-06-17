@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
         btnAddPill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                materialPillsBox.addPill(new PillEntity(2, "OrbisMobile"));
+                materialPillsBox.addPillAtPosition(0, new PillEntity(2, "OrbisMobile"));
             }
         });
         btnDeletePills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                materialPillsBox.removeAllPills();
+                materialPillsBox.removePillAtPosition(0);
             }
         });
     }

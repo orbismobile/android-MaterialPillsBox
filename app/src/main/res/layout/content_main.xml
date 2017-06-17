@@ -26,7 +26,7 @@
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:showCloseIcon="false"
+            app:showCloseIcon="true"
             app:maxPills="10"
             app:pillTextColor="@color/md_white_1000"
             app:closeIcon="@drawable/ic_close_white_24dp"

@@ -13,18 +13,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Carlos Leonardo Camilo Vargas Huamán on 5/18/17.
- *
  */
 
 public class MaterialPillsBox extends ViewGroup implements View.OnClickListener {
 
-    private static final String TAG =  MaterialPillsBox.class.getPackage().getName();
+    private static final String TAG = MaterialPillsBox.class.getPackage().getName();
     private final List<PillEntity> pillEntityList = new ArrayList<>();
 
     private int maxPills;
@@ -141,7 +141,22 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
-    private LinearLayout setupPillChildView(String pillMessage){
+    public void removePillAtPosition(int tagPosition) {
+        if (!pillEntityList.isEmpty()) {
+            pillEntityList.remove(tagPosition);
+            removeViewAt(tagPosition);
+            notifyDataSet();
+        } else {
+            Log.e(TAG, getContext().getString(R.string.empty_list_error_message));
+        }
+    }
+
+    public void removeAllPills() {
+        pillEntityList.clear();
+        removeAllViews();
+    }
+
+    private LinearLayout setupPillChildView(String pillMessage) {
         final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
                 .inflate(R.layout.pills_box_layout, this, false);
         linear.setBackgroundResource(backgroundPill);
@@ -158,24 +173,16 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         } else {
             imgClose.setVisibility(View.GONE);
         }
+        imgClose.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removePillAtPosition((int)linear.getTag());
+            }
+        });
         return linear;
     }
 
-    public void removePillAtPosition(int tagPosition) {
-        if (!pillEntityList.isEmpty()) {
-            pillEntityList.remove(tagPosition);
-            removeViewAt(tagPosition);
-            notifyDataSet();
-        } else {
-            Log.e(TAG, getContext().getString(R.string.empty_list_error_message));
-        }
-    }
-
-    public void removeAllPills() {
-        pillEntityList.clear();
-        removeAllViews();
-    }
-
+    //onClick for LinearLayoutChild
     @Override
     public void onClick(View v) {
         int position = (int) v.getTag();
