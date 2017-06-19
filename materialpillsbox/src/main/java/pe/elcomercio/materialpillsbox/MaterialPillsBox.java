@@ -101,6 +101,20 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
+    public List<PillEntity> getAllPills(){
+        return pillEntityList;
+    }
+
+    public List<PillEntity> getSelectedPills(){
+        List<PillEntity> pillEntities = new ArrayList<>();
+        for (PillEntity pillEntity:pillEntityList) {
+            if(pillEntity.isPressed()){
+                pillEntities.add(pillEntity);
+            }
+        }
+        return pillEntities;
+    }
+
     public void addPill(PillEntity pillEntity) {
         if (pillEntityList.size() < maxPills) {
             pillEntityList.add(pillEntity);
@@ -173,29 +187,30 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         } else {
             imgClose.setVisibility(View.GONE);
         }
-        imgClose.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removePillAtPosition((int)linear.getTag());
-            }
-        });
+        imgClose.setOnClickListener(this);
         return linear;
     }
 
-    //onClick for LinearLayoutChild
+
     @Override
     public void onClick(View v) {
-        int position = (int) v.getTag();
-        if (pillEntityList.get((int) v.getTag()).isPressed()) {
-            pillEntityList.get(position).setPressed(false);
-            v.setBackgroundResource(backgroundPill);
+        if (v instanceof ImageView) {//onClick CloseIcon
+            //v.getParent()).getTag() returns the linearLayoutPosition
+            removePillAtPosition((int) ((LinearLayout) v.getParent()).getTag());
         } else {
-            pillEntityList.get(position).setPressed(true);
-            v.setBackgroundResource(backgroundPillSelected);
-        }
+            //onClick for lnlContainer
+            int linearLayoutPosition = (int) v.getTag();
+            if (pillEntityList.get((int) v.getTag()).isPressed()) {
+                pillEntityList.get(linearLayoutPosition).setPressed(false);
+                v.setBackgroundResource(backgroundPill);
+            } else {
+                pillEntityList.get(linearLayoutPosition).setPressed(true);
+                v.setBackgroundResource(backgroundPillSelected);
+            }
 
-        if (onPillClickListener != null) {
-            onPillClickListener.onPillClick(position);
+            if (onPillClickListener != null) {
+                onPillClickListener.onPillClick(linearLayoutPosition);
+            }
         }
     }
 
