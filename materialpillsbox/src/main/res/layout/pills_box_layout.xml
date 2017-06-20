@@ -5,12 +5,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/default_pill_margin"
-    android:paddingTop="5dp"
-    android:paddingBottom="5dp"
-    android:paddingLeft="6dp"
-    android:paddingStart="6dp"
-    android:paddingEnd="6dp"
-    android:paddingRight="6dp"
+    android:paddingTop="@dimen/default_pill_padding_top"
+    android:paddingBottom="@dimen/default_pill_padding_bottom"
+    android:paddingLeft="@dimen/default_pill_padding_left"
+    android:paddingStart="@dimen/default_pill_padding_left"
+    android:paddingEnd="@dimen/default_pill_padding_right"
+    android:paddingRight="@dimen/default_pill_padding_right"
     android:background="@drawable/shape_button_pill">
 
     <ImageView
@@ -18,10 +18,10 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="2dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginLeft="@dimen/default_close_icon_margin"
+        android:layout_marginStart="@dimen/default_close_icon_margin"
+        android:layout_marginRight="@dimen/default_close_icon_margin"
+        android:layout_marginEnd="@dimen/default_close_icon_margin"
         android:contentDescription="@null"
         android:visibility="gone"/>
 

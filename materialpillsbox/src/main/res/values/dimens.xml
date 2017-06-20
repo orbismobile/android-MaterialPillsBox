@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_pill_margin">2dp</dimen>
+    <dimen name="default_close_icon_margin">2dp</dimen>
+
+    <dimen name="default_pill_padding_top">5dp</dimen>
+    <dimen name="default_pill_padding_bottom">5dp</dimen>
+
+    <dimen name="default_pill_padding_left">6dp</dimen>
+    <dimen name="default_pill_padding_right">6dp</dimen>
+
 </resources>

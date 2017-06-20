@@ -1,4 +1,4 @@
-package pe.elcomercio.materialpills;
+package pe.orbis.materialpills;
 
 import org.junit.Test;
 

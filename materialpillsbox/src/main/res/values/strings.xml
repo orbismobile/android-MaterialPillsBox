@@ -3,4 +3,5 @@
     <string name="im_a_pill">I\'m a pill</string>
     <string name="max_numbers_pills_error_message">Max Number of Pills</string>
     <string name="empty_list_error_message">Empty List</string>
+    <string name="your_entity_must_have_to_extend_from_PillEntity">Tu entidad tiene que extender de PillEntity</string>
 </resources>

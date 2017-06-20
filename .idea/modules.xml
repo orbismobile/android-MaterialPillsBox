@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MaterialPills.iml" filepath="$PROJECT_DIR$/MaterialPills.iml" />
       <module fileurl="file://$PROJECT_DIR$/android-MaterialPills.iml" filepath="$PROJECT_DIR$/android-MaterialPills.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-MaterialPills.iml" filepath="$PROJECT_DIR$/android-MaterialPills.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/materialpillsbox/materialpillsbox.iml" filepath="$PROJECT_DIR$/materialpillsbox/materialpillsbox.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialpillsbox/materialpillsbox.iml" filepath="$PROJECT_DIR$/materialpillsbox/materialpillsbox.iml" />
     </modules>
   </component>
