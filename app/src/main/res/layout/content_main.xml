@@ -25,15 +25,10 @@
         <pe.orbis.materialpillsbox.MaterialPillsBox
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:closeIcon="@drawable/ic_edit_white_24dp"
-            app:closeIconPadding="@dimen/default_close_icon_margin"
+            android:layout_height="wrap_content"
             app:maxPills="20"
-            app:pillSelectedBackground="@drawable/shape_button_pill_red"
             app:pillSelectionMode="multi"
-            app:showCloseIcon="true"
-            app:pillTextColor="@color/md_amber_500"
-            app:pillMarginBottom="10dp"/>
+            app:showCloseIcon="true"/>
 
     </ScrollView>
 
