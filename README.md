@@ -52,6 +52,7 @@ Any of your entities have to extend the `PillEntity` class(this is the baseEntit
 ##### closeIconPadding
     The separation between pill's message and the close icon
 #### pillSelectionMode
+    We have two selection mode, multiselection and none selection
 
 
 
