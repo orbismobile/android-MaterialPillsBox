@@ -11,7 +11,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="369dp"
-        android:layout_height="394dp"
+        android:layout_height="369dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -25,9 +25,13 @@
         <pe.orbis.materialpillsbox.MaterialPillsBox
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            app:maxPills="20"
-            app:pillSelectionMode="none"
+            android:padding="20dp"
+            app:maxPills="40"
+            app:pillBackground="@drawable/shape_button_pill_green"
+            app:pillSelectedBackground="@drawable/shape_button_pill_red"
+            app:pillSelectionMode="multi"
             app:showCloseIcon="true"
             app:closeIconPadding="2dp" />
 

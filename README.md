@@ -1,7 +1,18 @@
-# MaterialPillsBox Widget
+<h1 align="center">MaterialPillsBox Widget</h1>
+
+<p align="center">
+    <a target="_blank" href="https://jitpack.io/#orbismobile/android-MaterialPills"><img src="https://jitpack.io/v/orbismobile/android-MaterialPills.svg"></a>
+</p>
 
 <p align="center">
     <img src="Screenshots/ic_pillsbox_launcher-web.png" alt="icon" width="30%"/>
+</p>
+
+<p align="center">
+    <img src="Screenshots/Screenshot1.png" alt="icon" width="20%"/>
+    <img src="Screenshots/Screenshot2.png" alt="icon" width="20%"/>
+    <img src="Screenshots/Screenshot3.png" alt="icon" width="20%"/>
+    <img src="Screenshots/Screenshot4.png" alt="icon" width="20%"/>
 </p>
 
 MaterialPillsBox is a widget that allows you to implement a list of any objects
@@ -63,7 +74,7 @@ Any of your entities have to extend the `PillEntity` class(this is the baseEntit
 # Main Properties
 
 ##### maxPills
-    The maximum number of pills 
+    The maximum number of pills, the default value is 20
 ##### pillBackground
     The pill's brackground so you can add any drawable to your pills
 ##### pillSelectedBackground
@@ -78,6 +89,30 @@ Any of your entities have to extend the `PillEntity` class(this is the baseEntit
     We have two selection mode, multiselection and none selection
 
 
+License
+=======
+
+    MIT License
+    
+    Copyright (c) 2017 Orbis Mobile
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+    
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 
 
 

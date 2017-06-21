@@ -46,6 +46,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private int closeIconPadding;
 
     private static final int DEFAULT_MODE_MULTI_SELECTION = 1;
+    private static final int DEFAULT_MAX_PILLS = 20;
     private OnPillClickListener onPillClickListener;
 
     public void setOnPillClickListener(OnPillClickListener onPillClickListener) {
@@ -78,7 +79,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 attrs, R.styleable.MaterialPillsBox, defStyleAttr, defStyleRes);
 
         maxPills = a.getInt(
-                R.styleable.MaterialPillsBox_maxPills, 10);
+                R.styleable.MaterialPillsBox_maxPills, DEFAULT_MAX_PILLS);
 
         backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_pillBackground, R.drawable.shape_button_pill);
         backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_pillSelectedBackground, R.drawable.shape_button_selected_pill);

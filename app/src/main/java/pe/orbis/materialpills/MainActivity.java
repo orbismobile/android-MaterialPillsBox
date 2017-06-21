@@ -30,19 +30,30 @@ public class MainActivity extends AppCompatActivity implements OnPillClickListen
         Button btnDeletePills = (Button) findViewById(R.id.btnDeletePill);
 
         objects = new ArrayList<>();
-        objects.add(new DogEntity("CarlitosDroid", "Boyero de Berna"));
-        objects.add(new DogEntity("Jan", "Brabantino"));
-        objects.add(new DogEntity("Andres", "Bulldog"));
-        objects.add(new DogEntity("Carlo", "Boston"));
+        objects.add(new DogEntity("Carlos Vargas", "Boyero de Berna"));
+        objects.add(new DogEntity("Jan Sanchez", "Brabantino"));
+        objects.add(new DogEntity("Andres Munoz", "Bulldog"));
+        objects.add(new DogEntity("Ricardo Bravo", "Cairn "));
+        objects.add(new DogEntity("Carlo Renzo", "Boston"));
         objects.add(new DogEntity("Gerardo", "corg"));
-        objects.add(new DogEntity("Amigo ", "carlos "));
+        objects.add(new DogEntity("Vichito", "Bichón "));
+        objects.add(new DogEntity("Erik", "Crestado "));
+        objects.add(new DogEntity("Luchix", "Papillon "));
+        objects.add(new DogEntity("Juanjo", "Dalmata "));
+        objects.add(new DogEntity("Xio", "Border "));
+        objects.add(new DogEntity("Pedrisho ", "whippet "));
+        objects.add(new DogEntity("Xio", "westie "));
+        objects.add(new DogEntity("Titex", "teckel "));
+        objects.add(new DogEntity("OrbisUnt", "Cirneco del etna "));
+        objects.add(new DogEntity("Vale", "Papillon "));
+
 
         materialPillsBox.initFirstSetup(objects);
 
         btnAddPill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                objects.add(0, new DogEntity("NewName", "NewBreed"));
+                objects.add(0, new DogEntity("New Element", "NewBreed"));
                 materialPillsBox.notifyDataSetChanged();
             }
         });
