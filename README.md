@@ -11,13 +11,14 @@ and show them like a pills with a little material style.
 #### Step 1
 
 ```
-android{
+android {
  ...
-    allprojects
-        reposiories {
+    allprojects {
+        repositories {
             ...
-            maven { url ''https://jitpack.io'' }
+            maven { url 'https://jitpack.io' }
         }
+    }
 }
 ```
 #### Step 2
