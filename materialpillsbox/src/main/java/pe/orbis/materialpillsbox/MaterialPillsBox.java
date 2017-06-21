@@ -160,7 +160,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             imgClose.setVisibility(View.GONE);
         }
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) imgClose.getLayoutParams();
-        marginLayoutParams.rightMargin = closeIconPadding;
+        marginLayoutParams.leftMargin = closeIconPadding;
         imgClose.setLayoutParams(marginLayoutParams);
         imgClose.setOnClickListener(this);
         linear.setOnClickListener(this);
