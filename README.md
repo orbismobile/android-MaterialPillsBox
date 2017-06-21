@@ -7,6 +7,28 @@
 MaterialPillsBox is a widget that allows you to implement a list of any objects
 and show them like a pills with a little material style.
 
+# Gradle
+#### Step 1
+
+```
+android{
+ ...
+    allprojects
+        reposiories {
+            ...
+            maven { url ''https://jitpack.io'' }
+        }
+}
+```
+#### Step 2
+
+```
+    dependencies {
+        ...
+        compile 'com.github.orbismobile:android-MaterialPills:1.0'
+    }
+```
+
 # Usage
 
 ```xml
