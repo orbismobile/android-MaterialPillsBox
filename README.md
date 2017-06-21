@@ -5,14 +5,14 @@
 </p>
 
 <p align="center">
-    <img src="Screenshots/ic_pillsbox_launcher-web.png" alt="icon" width="30%"/>
+    <img src="Screenshots/ic_pillsbox_launcher-web.png" alt="icon" width="20%"/>
 </p>
 
 <p align="center">
-    <img src="Screenshots/Screenshot1.png" alt="icon" width="20%"/>
-    <img src="Screenshots/Screenshot2.png" alt="icon" width="20%"/>
-    <img src="Screenshots/Screenshot3.png" alt="icon" width="20%"/>
-    <img src="Screenshots/Screenshot4.png" alt="icon" width="20%"/>
+    <img src="Screenshots/Screenshot1.png" alt="icon" width="25%"/>
+    <img src="Screenshots/Screenshot2.png" alt="icon" width="25%"/>
+    <img src="Screenshots/Screenshot3.png" alt="icon" width="25%"/>
+    <img src="Screenshots/Screenshot4.png" alt="icon" width="25%"/>
 </p>
 
 MaterialPillsBox is a widget that allows you to implement a list of any objects
