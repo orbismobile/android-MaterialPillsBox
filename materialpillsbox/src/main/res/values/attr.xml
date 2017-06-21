@@ -4,8 +4,6 @@
         <attr name="maxPills" format="integer"/>
         <attr name="pillBackground" format="reference"/>
         <attr name="pillSelectedBackground" format="reference"/>
-        <attr name="backgroundSize" format="dimension"/>
-        <attr name="circleSize" format="dimension"/>
         <attr name="pillTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
         <attr name="closeIcon" format="reference"/>
@@ -13,16 +11,11 @@
         <attr name="pillMarginBottom" format="dimension"/>
         <attr name="pillMarginLeft" format="dimension"/>
         <attr name="pillMarginRight" format="dimension"/>
-
-
         <attr name="pillPaddingTop" format="dimension"/>
         <attr name="pillPaddingBottom" format="dimension"/>
         <attr name="pillPaddingLeft" format="dimension"/>
         <attr name="pillPaddingRight" format="dimension"/>
-
-
         <attr name="closeIconPadding" format="dimension"/>
-
         <attr name="pillSelectionMode">
             <enum name="none" value="0"/>
             <enum name="multi" value="1"/>

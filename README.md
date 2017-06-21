@@ -21,6 +21,27 @@ and show them like pills with a material style.
             app:pillMarginBottom="2dp"/>
 ```
 
+# Properties
+
+##### maxPills
+##### pillBackground
+##### pillSelectedBackground
+##### showCloseIcon
+##### pillMarginTop
+##### closeIconPadding
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
