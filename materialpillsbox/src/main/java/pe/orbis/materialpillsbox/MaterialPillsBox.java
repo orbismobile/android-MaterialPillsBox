@@ -131,7 +131,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         }
     }
 
-    public void initSetup(List<Object> objects) {
+    public void initFirstSetup(List<Object> objects) {
         this.objectList = objects;
         notifyDataSetChanged();
     }

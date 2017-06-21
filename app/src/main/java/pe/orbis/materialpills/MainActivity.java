@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnPillClickListen
         objects.add(new DogEntity("Gerardo", "corg"));
         objects.add(new DogEntity("Amigo ", "carlos "));
 
-        materialPillsBox.initSetup(objects);
+        materialPillsBox.initFirstSetup(objects);
 
         btnAddPill.setOnClickListener(new View.OnClickListener() {
             @Override
