@@ -37,7 +37,7 @@ android {
 ```
     dependencies {
         ...
-        compile 'com.github.orbismobile:android-MaterialPills:1.0'
+        compile 'com.github.orbismobile:android-MaterialPills:1.0.0'
     }
 ```
 
