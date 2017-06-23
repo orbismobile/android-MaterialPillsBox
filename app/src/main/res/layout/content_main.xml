@@ -25,12 +25,9 @@
         <pe.orbis.materialpillsbox.MaterialPillsBox
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:padding="20dp"
             app:maxPills="40"
-            app:pillBackground="@drawable/shape_button_pill_green"
-            app:pillSelectedBackground="@drawable/shape_button_pill_red"
             app:pillSelectionMode="multi"
             app:showCloseIcon="true"
             app:closeIconPadding="2dp" />
