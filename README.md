@@ -37,7 +37,7 @@ android {
 ```
     dependencies {
         ...
-        compile 'com.github.orbismobile:android-MaterialPills:1.0.0'
+        compile 'com.github.orbismobile:android-MaterialPills:1.0.1'
     }
 ```
 
@@ -61,7 +61,10 @@ android {
 
 
 # Setup
-For using the MaterialPillBox widget in your Activity, just implement the initFirstSetup()`
+For using the MaterialPillBox widget in your Activity, just implement the `initFirstSetup()` in your activity, as follow below: 
+```java 
+    materialPillsBox.initFirstSetup(objects);
+```
   
 # The PillEntity class                          
 Any of your entities have to extend the `PillEntity` class(this is the baseEntity). This class contains 
