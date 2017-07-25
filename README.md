@@ -49,7 +49,7 @@ android {
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:closeIcon="@drawable/ic_edit_white_24dp"
-            app:closeIconPadding="@dimen/default_close_icon_margin"
+            app:pillCloseIconMarginLeft="@dimen/default_close_icon_margin"
             app:maxPills="20"
             app:pillSelectedBackground="@drawable/shape_button_pill_red"
             app:pillSelectionMode="multi"
@@ -86,7 +86,7 @@ Any of your entities have to extend the `PillEntity` class(this is the baseEntit
     If you wanna show the close icon of the pill
 ##### closeIcon
     Set any icon for the pill
-##### closeIconPadding
+##### pillCloseIconMarginLeft
     The separation between pill's message and the close icon
 #### pillSelectionMode
     We have two selection mode, multiselection and none selection
