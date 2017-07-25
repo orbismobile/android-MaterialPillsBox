@@ -30,7 +30,7 @@
             app:maxPills="40"
             app:pillSelectionMode="multi"
             app:showCloseIcon="true"
-            app:closeIconPadding="2dp" />
+            app:pillCloseIconMarginLeft="2dp" />
 
     </ScrollView>
 

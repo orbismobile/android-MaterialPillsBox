@@ -31,10 +31,10 @@
         android:layout_width="14dp"
         android:layout_height="14dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/default_close_icon_margin"
-        android:layout_marginStart="@dimen/default_close_icon_margin"
-        android:layout_marginRight="@dimen/default_close_icon_margin"
-        android:layout_marginEnd="@dimen/default_close_icon_margin"
+        android:layout_marginLeft="@dimen/default_close_icon_margin_left"
+        android:layout_marginStart="@dimen/default_close_icon_margin_left"
+        android:layout_marginRight="@dimen/default_close_icon_margin_right"
+        android:layout_marginEnd="@dimen/default_close_icon_margin_right"
         android:contentDescription="@null"
         android:visibility="gone"/>
 

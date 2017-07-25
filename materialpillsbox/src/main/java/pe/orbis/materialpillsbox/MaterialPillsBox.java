@@ -43,7 +43,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private int pillPaddingLeft;
     private int pillPaddingRight;
 
-    private int closeIconPadding;
+    private int closeIconMarginLeft;
 
     private static final int DEFAULT_MODE_MULTI_SELECTION = 1;
     private static final int DEFAULT_MAX_PILLS = 20;
@@ -106,9 +106,8 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 R.styleable.MaterialPillsBox_pillPaddingLeft, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_left));
         pillPaddingRight = a.getDimensionPixelSize(
                 R.styleable.MaterialPillsBox_pillPaddingRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_padding_right));
-
-        closeIconPadding = a.getDimensionPixelSize(
-                R.styleable.MaterialPillsBox_closeIconPadding, getResources().getDimensionPixelOffset(R.dimen.default_close_icon_margin));
+        closeIconMarginLeft = a.getDimensionPixelSize(
+                R.styleable.MaterialPillsBox_pillCloseIconMarginLeft, getResources().getDimensionPixelOffset(R.dimen.default_close_icon_margin_left));
 
         selectionMode = a.getInteger(R.styleable.MaterialPillsBox_pillSelectionMode, DEFAULT_MODE_MULTI_SELECTION);
 
@@ -161,7 +160,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             imgClose.setVisibility(View.GONE);
         }
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) imgClose.getLayoutParams();
-        marginLayoutParams.leftMargin = closeIconPadding;
+        marginLayoutParams.leftMargin = closeIconMarginLeft;
         imgClose.setLayoutParams(marginLayoutParams);
         imgClose.setOnClickListener(this);
         linear.setOnClickListener(this);
@@ -175,7 +174,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
             int pillPosition = (int) ((LinearLayout) v.getParent()).getTag();
 
             if (onPillClickListener != null) {
-                onPillClickListener.onCloseIconClick(pillPosition);
+                onPillClickListener.onCloseIconClick(this, pillPosition);
             }
 
         } else {
@@ -192,7 +191,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 }
             }
             if (onPillClickListener != null) {
-                onPillClickListener.onPillClick(linearLayoutPosition);
+                onPillClickListener.onPillClick(this, linearLayoutPosition);
             }
         }
     }

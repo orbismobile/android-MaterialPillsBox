@@ -70,13 +70,13 @@ public class MainActivity extends AppCompatActivity implements OnPillClickListen
     }
 
     @Override
-    public void onPillClick(int position) {
+    public void onPillClick(View view, int position) {
         DogEntity dogEntity = (DogEntity) objects.get(position);
         Toast.makeText(this, "Name: " + dogEntity.getMessage() + " - Breed: " + dogEntity.getBreed(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onCloseIconClick(int position) {
+    public void onCloseIconClick(View view, int position) {
         Toast.makeText(this, "Delete: " + position, Toast.LENGTH_SHORT).show();
         objects.remove(position);
         materialPillsBox.notifyDataSetChanged();

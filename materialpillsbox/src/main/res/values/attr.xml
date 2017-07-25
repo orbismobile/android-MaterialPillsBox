@@ -15,7 +15,7 @@
         <attr name="pillPaddingBottom" format="dimension"/>
         <attr name="pillPaddingLeft" format="dimension"/>
         <attr name="pillPaddingRight" format="dimension"/>
-        <attr name="closeIconPadding" format="dimension"/>
+        <attr name="pillCloseIconMarginLeft" format="dimension"/>
         <attr name="pillSelectionMode">
             <enum name="none" value="0"/>
             <enum name="multi" value="1"/>
