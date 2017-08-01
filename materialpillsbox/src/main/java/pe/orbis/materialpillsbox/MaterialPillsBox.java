@@ -31,7 +31,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private int backgroundPillSelected;
     private boolean hideCloseIcon;
     private int pillTextColor;
-    private int closeIcon;
+    private int pillCloseIcon;
     private int pillMarginTop;
     private int pillMarginBottom;
     private int pillMarginLeft;
@@ -84,7 +84,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_pillBackground, R.drawable.shape_button_pill);
         backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_pillSelectedBackground, R.drawable.shape_button_selected_pill);
 
-        closeIcon = a.getResourceId(R.styleable.MaterialPillsBox_closeIcon, R.drawable.ic_close_white_24dp);
+        pillCloseIcon = a.getResourceId(R.styleable.MaterialPillsBox_pillCloseIcon, R.drawable.ic_close_white_18dp);
 
         pillMarginTop = a.getDimensionPixelSize(
                 R.styleable.MaterialPillsBox_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
@@ -153,7 +153,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         lblMessage.setText(pillMessage);
         lblMessage.setTextColor(pillTextColor);
         ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
-        imgClose.setBackgroundResource(closeIcon);
+        imgClose.setBackgroundResource(pillCloseIcon);
         if (hideCloseIcon) {
             imgClose.setVisibility(View.VISIBLE);
         } else {
