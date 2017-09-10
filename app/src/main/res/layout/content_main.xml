@@ -26,11 +26,12 @@
             android:id="@+id/mtbArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="10dp"
             app:maxPills="40"
             app:pillSelectionMode="multi"
-            app:showCloseIcon="true"
-            app:pillCloseIconMarginLeft="2dp" />
+            app:showCloseIcon="false"
+            app:pillCloseIconMarginLeft="2dp"
+            app:showContactIcon="true"/>
 
     </ScrollView>
 

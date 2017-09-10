@@ -18,8 +18,8 @@ public class DogEntity extends PillEntity {
         this.breed = breed;
     }
 
-    public DogEntity(String name, String breed, boolean pressed) {
-        super(name, pressed);
+    public DogEntity(String name, String breed, int imgResource, boolean pressed) {
+        super(name, imgResource, pressed);
         this.breed = breed;
     }
 

@@ -10,6 +10,7 @@ public class PillEntity {
     private int id;
     private String message = "default";
     private boolean pressed = false;
+    private int imgResource;
 
     protected PillEntity() {
     }
@@ -27,6 +28,13 @@ public class PillEntity {
         this.id = id;
         this.message = message;
         this.pressed = pressed;
+    }
+
+    public PillEntity(String message, int imgResource, boolean pressed) {
+        this.id = id;
+        this.message = message;
+        this.pressed = pressed;
+        this.imgResource = imgResource;
     }
 
     public int getId() {
@@ -51,5 +59,13 @@ public class PillEntity {
 
     public void setPressed(boolean pressed) {
         this.pressed = pressed;
+    }
+
+    public int getImgResource() {
+        return imgResource;
+    }
+
+    public void setImgResource(int imgResource) {
+        this.imgResource = imgResource;
     }
 }

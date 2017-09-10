@@ -6,6 +6,7 @@
         <attr name="pillSelectedBackground" format="reference"/>
         <attr name="pillTextColor" format="color|reference"/>
         <attr name="showCloseIcon" format="boolean"/>
+        <attr name="showContactIcon" format="boolean"/>
         <attr name="pillCloseIcon" format="reference"/>
         <attr name="pillMarginTop" format="dimension"/>
         <attr name="pillMarginBottom" format="dimension"/>

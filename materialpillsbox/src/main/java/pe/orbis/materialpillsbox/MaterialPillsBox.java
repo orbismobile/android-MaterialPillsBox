@@ -30,6 +30,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
     private int backgroundPill;
     private int backgroundPillSelected;
     private boolean hideCloseIcon;
+    private boolean hideContactIcon;
     private int pillTextColor;
     private int pillCloseIcon;
     private int pillMarginTop;
@@ -84,7 +85,7 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         backgroundPill = a.getResourceId(R.styleable.MaterialPillsBox_pillBackground, R.drawable.shape_button_pill);
         backgroundPillSelected = a.getResourceId(R.styleable.MaterialPillsBox_pillSelectedBackground, R.drawable.shape_button_selected_pill);
 
-        pillCloseIcon = a.getResourceId(R.styleable.MaterialPillsBox_pillCloseIcon, R.drawable.ic_close_white_18dp);
+        pillCloseIcon = a.getResourceId(R.styleable.MaterialPillsBox_pillCloseIcon, R.drawable.ic_cancel_white_18dp);
 
         pillMarginTop = a.getDimensionPixelSize(
                 R.styleable.MaterialPillsBox_pillMarginTop, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
@@ -96,6 +97,8 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
                 R.styleable.MaterialPillsBox_pillMarginRight, getResources().getDimensionPixelOffset(R.dimen.default_pill_margin));
         hideCloseIcon =
                 a.getBoolean(R.styleable.MaterialPillsBox_showCloseIcon, false);
+        hideContactIcon =
+                a.getBoolean(R.styleable.MaterialPillsBox_showContactIcon, false);
         pillTextColor = a.getColor(
                 R.styleable.MaterialPillsBox_pillTextColor, ContextCompat.getColor(this.getContext(), R.color.md_white_1000));
         pillPaddingTop = a.getDimensionPixelSize(
@@ -114,17 +117,15 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         a.recycle();
     }
 
-
-    public void setPillTextColor(int pillTextColor) {
-        this.pillTextColor = pillTextColor;
-        notifyDataSetChanged();
-    }
-
     public void notifyDataSetChanged() {
         removeAllViews();
         for (int i = 0; i < objectList.size(); i++) {
             if (i < maxPills) {
-                LinearLayout linear = setupPillChildView(((PillEntity) objectList.get(i)).getMessage(), ((PillEntity) objectList.get(i)).isPressed());
+                LinearLayout linear = setupPillChildView(
+                        ((PillEntity) objectList.get(i)).getMessage(),
+                        ((PillEntity) objectList.get(i)).isPressed(),
+                        ((PillEntity) objectList.get(i)).getImgResource()
+                );
                 addView(linear);
                 linear.setTag(i);
             }
@@ -136,23 +137,44 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         notifyDataSetChanged();
     }
 
-    private LinearLayout setupPillChildView(String pillMessage, boolean isPressed) {
-        final LinearLayout linear = (LinearLayout) LayoutInflater.from(getContext())
+    private LinearLayout setupPillChildView(String pillMessage, boolean isPressed, int imgResource) {
+        final LinearLayout lnlContainer = (LinearLayout) LayoutInflater.from(getContext())
                 .inflate(R.layout.pills_box_layout, this, false);
-        linear.setBackgroundResource(backgroundPill);
+        lnlContainer.setBackgroundResource(backgroundPill);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(pillMarginLeft, pillMarginTop, pillMarginRight, pillMarginBottom);
-        linear.setLayoutParams(layoutParams);
-        linear.setPadding(pillPaddingLeft, pillPaddingTop, pillPaddingRight, pillPaddingBottom);
+        lnlContainer.setLayoutParams(layoutParams);
+
         if (isPressed) {
-            linear.setBackgroundResource(backgroundPillSelected);
+            lnlContainer.setBackgroundResource(backgroundPillSelected);
         } else {
-            linear.setBackgroundResource(backgroundPill);
+            lnlContainer.setBackgroundResource(backgroundPill);
         }
-        TextView lblMessage = (TextView) linear.findViewById(R.id.lblMessage);
+
+        //Inflating LinearLayout child for customization
+        LinearLayout lnlChild = (LinearLayout) lnlContainer.findViewById(R.id.lnlChild);
+        lnlChild.setPadding(pillPaddingLeft, pillPaddingTop, pillPaddingRight, pillPaddingBottom);
+
+        //Inflating ImageView
+        CirculateImageView civContact = (CirculateImageView) lnlContainer.findViewById(R.id.civContact);
+
+        if (hideContactIcon) {
+            civContact.setVisibility(View.VISIBLE);
+        } else {
+            civContact.setVisibility(View.GONE);
+        }
+
+        if (imgResource == 0) {
+            civContact.setImageResource(R.drawable.ic_orbismobile);
+        } else {
+            civContact.setImageResource(imgResource);
+        }
+        //Inflating TextView child for customization
+        TextView lblMessage = (TextView) lnlContainer.findViewById(R.id.lblMessage);
         lblMessage.setText(pillMessage);
         lblMessage.setTextColor(pillTextColor);
-        ImageView imgClose = (ImageView) linear.findViewById(R.id.imgClose);
+        //Inflating imgClose view for customization
+        ImageView imgClose = (ImageView) lnlContainer.findViewById(R.id.imgClose);
         imgClose.setBackgroundResource(pillCloseIcon);
         if (hideCloseIcon) {
             imgClose.setVisibility(View.VISIBLE);
@@ -163,15 +185,22 @@ public class MaterialPillsBox extends ViewGroup implements View.OnClickListener 
         marginLayoutParams.leftMargin = closeIconMarginLeft;
         imgClose.setLayoutParams(marginLayoutParams);
         imgClose.setOnClickListener(this);
-        linear.setOnClickListener(this);
-        return linear;
+        lnlContainer.setOnClickListener(this);
+        return lnlContainer;
+    }
+
+    public void setPillTextColor(int pillTextColor) {
+        this.pillTextColor = pillTextColor;
+        notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View v) {
         if (v instanceof ImageView) {//onClick CloseIcon
-            //v.getParent()).getTag() returns the linearLayoutPosition
-            int pillPosition = (int) ((LinearLayout) v.getParent()).getTag();
+            //v.getParent() -> parent of closeIcon
+            LinearLayout lnlChild = (LinearLayout) v.getParent();
+            LinearLayout lnlContainer = (LinearLayout) lnlChild.getParent();
+            int pillPosition = (int) (lnlContainer).getTag();
 
             if (onPillClickListener != null) {
                 onPillClickListener.onCloseIconClick(this, pillPosition);

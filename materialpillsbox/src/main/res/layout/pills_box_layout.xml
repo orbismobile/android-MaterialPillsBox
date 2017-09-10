@@ -4,39 +4,54 @@
     android:orientation="horizontal"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/default_pill_margin"
-    android:paddingTop="@dimen/default_pill_padding_top"
-    android:paddingBottom="@dimen/default_pill_padding_bottom"
-    android:paddingLeft="@dimen/default_pill_padding_left"
-    android:paddingStart="@dimen/default_pill_padding_left"
-    android:paddingEnd="@dimen/default_pill_padding_right"
-    android:paddingRight="@dimen/default_pill_padding_right"
     android:background="@drawable/shape_button_pill">
 
-    <TextView
-        android:id="@+id/lblMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginEnd="2dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:layout_gravity="center"
-        android:text="@string/im_a_pill"
-        android:textColor="@color/md_white_1000" />
+    <pe.orbis.materialpillsbox.CirculateImageView
+        android:id="@+id/civContact"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:visibility="gone"/>
 
-    <ImageView
-        android:id="@+id/imgClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/default_close_icon_margin_left"
-        android:layout_marginStart="@dimen/default_close_icon_margin_left"
-        android:layout_marginRight="@dimen/default_close_icon_margin_right"
-        android:layout_marginEnd="@dimen/default_close_icon_margin_right"
-        android:contentDescription="@null"
-        android:visibility="gone" />
+    <LinearLayout
+        android:id="@+id/lnlChild"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="0dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp">
+
+        <TextView
+            android:id="@+id/lblMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/im_a_pill"
+            android:textSize="16sp"
+            android:textColor="@color/md_white_1000" />
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:contentDescription="@null"
+            android:visibility="gone" />
+
+    </LinearLayout>
 
 </LinearLayout>
+

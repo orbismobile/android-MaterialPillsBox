@@ -30,14 +30,14 @@ public class MainActivity extends AppCompatActivity implements OnPillClickListen
         Button btnDeletePills = (Button) findViewById(R.id.btnDeletePill);
 
         objects = new ArrayList<>();
-        objects.add(new DogEntity("Carlos Vargas", "Boyero de Berna"));
-        objects.add(new DogEntity("Jan Sanchez", "Brabantino"));
-        objects.add(new DogEntity("Andres Munoz", "Bulldog"));
-        objects.add(new DogEntity("Ricardo Bravo", "Cairn "));
-        objects.add(new DogEntity("Carlo Renzo", "Boston"));
-        objects.add(new DogEntity("Gerardo", "corg"));
-        objects.add(new DogEntity("Vichito", "Bichón "));
-        objects.add(new DogEntity("Erik", "Crestado "));
+        objects.add(new DogEntity("Carlos Vargas", "Boyero de Berna", R.drawable.carlitosdroid, false));
+        objects.add(new DogEntity("Jan Sanchez", "Brabantino", R.drawable.jan, false));
+        objects.add(new DogEntity("Andres Munoz", "Bulldog", R.drawable.andres, false));
+        objects.add(new DogEntity("Erik ", "Cairn ", R.drawable.weroko, false));
+        objects.add(new DogEntity("Carlo Renzo", "Boston", R.drawable.carlo, false));
+        objects.add(new DogEntity("Gerardo", "corg", R.drawable.gerardo, false));
+        objects.add(new DogEntity("CLC", "Bichón ", R.drawable.carlos, false));
+        objects.add(new DogEntity("Erik", "Crestado ", R.drawable.weroko, false));
         objects.add(new DogEntity("Luchix", "Papillon "));
         objects.add(new DogEntity("Juanjo", "Dalmata "));
         objects.add(new DogEntity("Xio", "Border "));
@@ -47,26 +47,25 @@ public class MainActivity extends AppCompatActivity implements OnPillClickListen
         objects.add(new DogEntity("OrbisUnt", "Cirneco del etna "));
         objects.add(new DogEntity("Vale", "Papillon "));
 
-
         materialPillsBox.initFirstSetup(objects);
 
         btnAddPill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                objects.add(0, new DogEntity("New Element", "NewBreed"));
+                objects.add(0, new DogEntity("New Item", "NewBreed", R.drawable.carlitosdroid, false));
                 materialPillsBox.notifyDataSetChanged();
             }
         });
         btnDeletePills.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                objects.remove(0);
-                materialPillsBox.notifyDataSetChanged();
-
+                if(!objects.isEmpty()){
+                    objects.remove(0);
+                    materialPillsBox.notifyDataSetChanged();
+                }
             }
         });
         materialPillsBox.setOnPillClickListener(this);
-
     }
 
     @Override
