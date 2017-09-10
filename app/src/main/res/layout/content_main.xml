@@ -29,7 +29,7 @@
             android:padding="10dp"
             app:maxPills="40"
             app:pillSelectionMode="multi"
-            app:showCloseIcon="false"
+            app:showCloseIcon="true"
             app:pillCloseIconMarginLeft="2dp"
             app:showContactIcon="true"/>
 
